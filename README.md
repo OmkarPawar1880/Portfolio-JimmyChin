@@ -1,16 +1,84 @@
-# React + Vite
+# Portfolio – Jimmy Chin 📸🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, cinematic portfolio website inspired by the work of **Jimmy Chin** — built to showcase photography, filmmaking, and visual storytelling with smooth animations and a clean editorial layout.
 
-Currently, two official plugins are available:
+This project focuses on **story-first design**, immersive visuals, and modern front-end practices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Cinematic **Hero section** with GSAP animations
+- Smooth **scroll-based transitions** and reveals
+- Modular React component architecture
+- Clean, minimal, premium UI design
+- Fully responsive (desktop, tablet, mobile)
+- Portfolio categories:
+  - Portraits
+  - Events
+  - Products
+  - Travel
+- Testimonials / social proof
+- Call-to-Action & Contact section
+- Minimal footer with social links
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **React.js**
+- **GSAP (GreenSock Animation Platform)**
+- **CSS3 (External CSS, no UI libraries)**
+- **React Hooks**
+- **Modern ES6+ JavaScript**
+
+---
+
+## 📂 Project Structure
+
+```bash
+Portfolio-JimmyChin/
+│
+├── public/
+│ └── index.html
+│
+├── src/
+│ ├── assets/
+│ │ ├── images/
+│ │ └── videos/
+│ │
+│ ├── Components/
+│ │ ├── Hero.jsx
+│ │ ├── Header.jsx
+│ │ ├── About.jsx
+│ │ ├── Portfolio.jsx
+│ │ ├── Services.jsx
+│ │ ├── Testimonials.jsx
+│ │ ├── CallToAction.jsx
+│ │ └── Footer.jsx
+│ │
+│ ├── App.jsx
+│ ├── App.css
+│ └── main.jsx
+│
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/OmkarPawar1880/Portfolio-JimmyChin.git
+```
+2️⃣ Install dependencies
+```bash
+npm install
+```
+3️⃣ Start the development server
+```bash
+npm run dev
+```
