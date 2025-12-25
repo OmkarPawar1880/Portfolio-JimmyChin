@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,7 +11,7 @@ const About = () => {
   const imageRef = useRef(null);
   const contentRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Image animation
       gsap.from(imageRef.current, {
@@ -39,13 +39,12 @@ const About = () => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => ctx.revert(); // cleanup on unmount
   }, []);
 
   return (
     <section className="about" id="about" ref={sectionRef}>
       <div className="about-container">
-
         {/* Image */}
         <div className="about-image" ref={imageRef}>
           <img src={aboutImage} alt="Portrait of photographer" />
@@ -70,12 +69,17 @@ const About = () => {
           </p>
 
           <ul className="about-meta">
-            <li><strong>Experience:</strong> 20+ years</li>
-            <li><strong>Work:</strong> Adventure, documentary, commercial</li>
-            <li><strong>Based In:</strong> United States</li>
+            <li>
+              <strong>Experience:</strong> 20+ years
+            </li>
+            <li>
+              <strong>Work:</strong> Adventure, documentary, commercial
+            </li>
+            <li>
+              <strong>Based In:</strong> United States
+            </li>
           </ul>
         </div>
-
       </div>
     </section>
   );

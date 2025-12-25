@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import heroVideo from "../assets/showreel.mp4";
 import heroImage from "../assets/Hero.jpg";
@@ -12,7 +12,7 @@ const Hero = ({
   const ctaRef = useRef(null);
   const bgRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.4 });
 
@@ -43,6 +43,7 @@ const Hero = ({
           "-=0.5"
         );
 
+      // Background subtle zoom
       gsap.fromTo(
         bgRef.current,
         { scale: 1.1 },
@@ -54,11 +55,11 @@ const Hero = ({
       );
     }, heroRef);
 
-    return () => ctx.revert();
+    return () => ctx.revert(); // cleanup on unmount
   }, []);
 
   return (
-    <section className="hero" id="Hero" ref={heroRef}>
+    <section className="hero" id="hero" ref={heroRef}>
       {/* Background */}
       <div className="hero-bg" ref={bgRef}>
         {mode === "videographer" && (

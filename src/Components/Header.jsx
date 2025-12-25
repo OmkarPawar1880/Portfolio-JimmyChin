@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-
 
 const Header = () => {
   const headerRef = useRef(null);
   const linksRef = useRef([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      // Header slide-in
       gsap.from(headerRef.current, {
         y: -80,
         opacity: 0,
@@ -15,21 +15,23 @@ const Header = () => {
         ease: "power3.out",
       });
 
+      // Nav links stagger
       gsap.from(linksRef.current, {
         opacity: 0,
         y: -10,
-        stagger: 0.1,
+        duration: 0.6,
+        stagger: 0.12,
         delay: 0.3,
         ease: "power3.out",
       });
-    });
+    }, headerRef);
 
-    return () => ctx.revert();
+    return () => ctx.revert(); // cleanup on unmount
   }, []);
 
   return (
     <header className="header" ref={headerRef}>
-      {/* Logo / Brand */}
+      {/* Logo */}
       <div className="header-logo">
         Jimmy<span>Chin</span>
       </div>

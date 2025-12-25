@@ -1,8 +1,23 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  
+  overscroll-behavior: none;
+}
+
+
 .hero {
   position: relative;
   height: 100vh;
   width: 100%;
-  overflow: hidden;
   color: #ffffff;
   font-family: "Poppins", sans-serif;
 }
@@ -11,7 +26,8 @@
 .hero-bg {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  /* keep background behind content but above page background */
+  z-index: 0;
 }
 
 .hero-video,
@@ -37,7 +53,7 @@
 .hero-collage span {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.08),
+    lch(100% 0.01 296.81 / 0.08),
     rgba(0, 0, 0, 0.35)
   );
 }
@@ -79,10 +95,6 @@
 }
 
 /* ---------- CTA ---------- */
-.hero-cta {
-  display: flex;
-  gap: 20px;
-}
 
 .primary-btn {
   padding: 14px 36px;
@@ -344,195 +356,154 @@
 /* ===============================
    SERVICES SECTION
 ================================ */
-
-/* ===============================
-   SERVICES SECTION
-================================ */
-
+/* ---------- SERVICES SECTION ---------- */
 .services {
   padding: 120px 6vw;
   background-color: #0b0b0b;
-  color: #ffffff;
-  overflow: hidden; /* GSAP safety */
 }
 
-.services-inner {
+.services-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ---------- Headings ---------- */
-
+/* ---------- TITLES ---------- */
 .services-title {
-  font-size: 3.2rem;
-  font-weight: 500;
+  font-size: 3rem;
+  font-weight: 600;
   text-align: center;
+  color: #fff;
   margin-bottom: 12px;
-  letter-spacing: -0.02em;
 }
 
 .services-subtitle {
-  max-width: 650px;
-  margin: 0 auto 90px;
   text-align: center;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
+  color: #fff;
+  max-width: 650px;
+  margin: 0 auto 80px;
   line-height: 1.6;
-  color: #b5b5b5;
 }
 
-/* ---------- Grid ---------- */
-
+/* ---------- GRID ---------- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 36px;
-  align-items: stretch; /* equal height rows */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
 }
 
-/* ---------- Card ---------- */
-
+/* ---------- CARD ---------- */
 .service-card {
-  background: linear-gradient(180deg, #151515 0%, #101010 100%);
-  border-radius: 22px;
-  padding: 40px 36px 44px;
-
+  height: 100%;
+  background: #0b0b0b;
+  padding: 40px 35px;
+  border-radius: 20px;
+  border: 1px solid rgba(92, 86, 86, 0.161);
+  box-shadow: 0 20px 40px #34333335;
   display: flex;
   flex-direction: column;
-
-  height: 100%;
-  min-height: 100%;
-  box-sizing: border-box;
-
-  overflow: hidden;
-  will-change: transform;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
 }
 
-/* ---------- Card Text ---------- */
-
-.service-card h3 {
-  font-size: 1.55rem;
-  font-weight: 500;
+/* ---------- CARD CONTENT ---------- */
+.service-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
   margin-bottom: 6px;
 }
 
-.service-card .service-subtitle {
-  font-size: 0.9rem;
-  color: #8c8c8c;
+.service-subtitle {
+  font-size: 0.95rem;
+  color: #fff;
   margin-bottom: 28px;
-  display: block;
 }
 
-/* ---------- List ---------- */
-
-.service-card ul {
+/* ---------- FEATURES ---------- */
+.service-features {
   list-style: none;
   padding: 0;
-  margin: 0;
-  flex-grow: 1; /* pushes footer to bottom */
+  margin: 0 0 30px;
+  flex-grow: 1;
 }
 
-.service-card ul li {
+.service-features li {
   font-size: 0.95rem;
-  line-height: 1.5;
-  color: #d6d6d6;
-  padding-left: 18px;
+  color: white;
+  margin-bottom: 12px;
   position: relative;
-  margin-bottom: 14px;
+  padding-left: 18px;
 }
 
-.service-card ul li:last-child {
-  margin-bottom: 0;
-}
-
-.service-card ul li::before {
+.service-features li::before {
   content: "—";
   position: absolute;
   left: 0;
-  color: #777;
+  color: white;
 }
-
-/* ---------- Footer ---------- */
-
-.service-footer {
-  margin-top: 32px;
+/* ---------- SERVICES CTA ---------- */
+.services-cta {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: center;
+  margin-bottom: 80px;
 }
 
+.services-btn {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid #fff;
+  padding: 14px 38px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Hover – premium & subtle */
+.services-btn:hover {
+  background: #111;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Active */
+.services-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* ---------- PRICE ---------- */
 .service-price {
   font-size: 0.95rem;
   font-weight: 500;
-  color: #ffffff;
+  color: #fff;
+  letter-spacing: 0.5px;
 }
 
-/* ---------- Button ---------- */
-
-.service-btn {
-  background: transparent;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  padding: 12px 22px;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.service-btn:hover {
-  background: #ffffff;
-  color: #0b0b0b;
-}
-
-/* ===============================
-   RESPONSIVE
-================================ */
-
-@media (max-width: 1100px) {
-  .services {
-    padding: 100px 6vw;
-  }
-
-  .services-subtitle {
-    margin-bottom: 70px;
-  }
-}
-
-@media (max-width: 768px) {
-  .services-title {
-    font-size: 2.6rem;
-  }
-
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
   .services-grid {
-    gap: 28px;
-  }
-
-  .service-card {
-    padding: 34px 30px 38px;
-  }
-}
-
-@media (max-width: 640px) {
-  .services {
-    padding: 90px 6vw;
+    grid-template-columns: 1fr;
   }
 
   .services-title {
-    font-size: 2.3rem;
-  }
-
-  .services-subtitle {
-    margin-bottom: 60px;
-    font-size: 1rem;
+    font-size: 2.4rem;
   }
 }
+
+
 /* --------- TESTIMONIALS SECTION --------- */
 .testimonials {
   padding: 120px 6vw;
@@ -683,6 +654,7 @@
   color: #eaeaea;
   padding: 80px 6vw 60px;
   text-align: center;
+  
 }
 
 .footer-inner {
@@ -738,7 +710,8 @@
   justify-content: space-between;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(12px);
-  z-index: 1000;
+  /* ensure header sits above hero and other content */
+  z-index: 9999;
 }
 
 /* Logo */

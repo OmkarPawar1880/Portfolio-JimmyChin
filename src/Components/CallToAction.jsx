@@ -1,13 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const ContactCTA = () => {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".cta-animate", {
         y: 60,
@@ -22,7 +25,7 @@ const ContactCTA = () => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => ctx.revert(); // cleanup on unmount
   }, []);
 
   return (

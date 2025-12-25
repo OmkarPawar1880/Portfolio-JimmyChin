@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +29,7 @@ const Testimonials = () => {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(cardsRef.current, {
         y: 60,
@@ -45,13 +44,14 @@ const Testimonials = () => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => ctx.revert(); // cleanup on unmount
   }, []);
 
   return (
     <section className="testimonials" id="testimonials" ref={sectionRef}>
       <div className="testimonials-inner">
         <h2 className="testimonials-title">Client Words</h2>
+
         <p className="testimonials-subtitle">
           Real experiences from brands and creators I’ve worked with
         </p>

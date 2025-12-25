@@ -1,31 +1,38 @@
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   const footerRef = useRef(null);
 
-  useEffect(() => {
-    gsap.fromTo(
-      footerRef.current,
-      { y: 60, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 90%",
-        },
-      }
-    );
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        footerRef.current,
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 90%",
+          },
+        }
+      );
+    }, footerRef);
+
+    return () => ctx.revert(); // cleanup on unmount
   }, []);
 
   return (
     <footer className="footer" ref={footerRef}>
       <div className="footer-inner">
-        
         {/* Brand */}
         <h3 className="footer-brand">Jimmy Chin</h3>
 
@@ -51,7 +58,6 @@ const Footer = () => {
         <p className="footer-copy">
           © {new Date().getFullYear()} Jimmy Chin. All rights reserved.
         </p>
-
       </div>
     </footer>
   );
